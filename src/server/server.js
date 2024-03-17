@@ -1,9 +1,15 @@
 
 
-const express = require('express');
-const path = require('path');
+// const express = require('express');
+// const path = require('path');
 
-const startServer = (options) => {
+// Forma ES6
+import express from 'express';
+import path from 'path';
+
+
+
+export const startServer = (options) => {
     const { port, publicPath = 'public'} = options
    
 
@@ -13,7 +19,7 @@ const startServer = (options) => {
     app.use(express.static(publicPath));  // Contenida estatico para el servidor web
 
     app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, publicPath, 'index.html'));
+        res.sendFile(path.join(__dirname + `../../../${publicPath}/index.html`));
     }); // Cualquier ruta que no sea estatica, se redirige al index.html
 
     app.listen(port, () => {
@@ -23,4 +29,6 @@ const startServer = (options) => {
 }
 
 
-module.exports = startServer;
+
+
+// module.exports = startServer;
